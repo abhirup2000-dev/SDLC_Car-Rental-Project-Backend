@@ -4,7 +4,8 @@ const path = require("path");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const session = require("express-session");
-
+const cors = require("cors")
+const corsOptions = require("./app/utils/corsOrigin")
 
 const app = express()
 
@@ -18,6 +19,7 @@ ConnectDatabase()
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
+app.use(cors(corsOptions))
 app.use(morgan('dev'))
 app.use(
   helmet({
